@@ -21,12 +21,15 @@ class MyHandler(BaseHTTPRequestHandler):
         if self.path == '/ping':
             self.set_headers()
             self.wfile.write(b'pong')
-            logging.debug('Let\'s play some ping pong')
+            logging.debug('Let\'s play some ping')
         elif self.path == '/kill':
             self.set_headers(status=500)
             self.wfile.write(b'killed')
             logging.warning('Someone killed the server!!!')
             os._exit(1)
+        elif self.path == '/hi':
+            self.set_headers()
+            self.wfile.write(b'hi')
         else:
             self.set_headers(status=404)
             self.wfile.write(b'404 Not Found')
